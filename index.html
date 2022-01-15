@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Quiz</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/questions.js" defer></script>
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <h2 id="scoreboard">Your Score: <span id="score-count"></span></h1>  
+        <h2 id="timer">Time Left: <span id="time-left">60</span> seconds</h2>              
+    </header>
+
+        <section id="button-area">
+            <button id="start-button">Start</button>
+        </section>
+
+    <section class="announcement-area">
+        <h2 class="announcement">Press the Start button to begin the Javascript quiz!</h2>
+    </section>
+
+    <main>
+        <section class="quiz-area">
+            <h2 class="question" id="question"></h2>
+            <button class="answer" id="first-answer"></button>
+            <button class="answer" id="second-answer"></button>
+            <button class="answer" id="third-answer"></button>
+            <button class="answer" id="fourth-answer"></button>
+        </section>
+    </main>
+
+
+</body>
+</html>
