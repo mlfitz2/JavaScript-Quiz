@@ -29,12 +29,23 @@
     <main>
         <section class="quiz-area">
             <h2 class="question" id="question"></h2>
-            <button class="answer" id="first-answer"></button>
+            <div id="button-zone"></div>
+            <!-- <button class="answer" id="first-answer"></button>
             <button class="answer" id="second-answer"></button>
             <button class="answer" id="third-answer"></button>
-            <button class="answer" id="fourth-answer"></button>
+            <button class="answer" id="fourth-answer"></button> -->
+       
         </section>
     </main>
+
+    <div id="end-screen" class="hide">
+        <h2>All done!</h2>
+        <p>Your final score is <span id="final-score"></span>.</p>
+        <p>
+          Enter initials: <input type="text" id="initials" max="3" />
+          <button id="submit">Submit</button>
+        </p>
+      </div>
 
 
 </body>

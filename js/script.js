@@ -8,6 +8,8 @@ var secondAnswerEl = document.querySelector('#second-answer');
 var thirdAnswerEl = document.querySelector('#third-answer');
 var fourthAnswerEl = document.querySelector('#fourth-answer');
 var scoreCountEl = document.querySelector('#score-count')
+var answerEl = document.querySelector('.answer');
+var buttonZone = document.querySelector('#button-zone');
 
 var timerCount = 60;
 var round = 0;
@@ -28,44 +30,37 @@ function startGame() {
 
 //Display the question
 function displayQuestion() {
-    questionEl.textContent = questions[round].title;
-    firstAnswerEl.textContent = questions[round].choices[0];
-    secondAnswerEl.textContent = questions[round].choices[1];
-    thirdAnswerEl.textContent = questions[round].choices[2];
-    fourthAnswerEl.textContent = questions[round].choices[3];
-    makeYourChoice();
+    var currentQuestion = questions[round];
+    questionEl.textContent = currentQuestion.title;
+    buttonZone.innerHTML = "";
+    currentQuestion.choices.forEach(function(element){
+        var tempButton = document.createElement('button');
+        tempButton.textContent = element;
+        tempButton.setAttribute('class', 'answer');
+        tempButton.onclick = makeYourChoice;
+        buttonZone.append(tempButton);
+    })
+    // firstAnswerEl.textContent = questions[round].choices[0];
+    // secondAnswerEl.textContent = questions[round].choices[1];
+    // thirdAnswerEl.textContent = questions[round].choices[2];
+    // fourthAnswerEl.textContent = questions[round].choices[3];
 }    
 
 function makeYourChoice() {
-    var myChoice = "";
-    firstAnswerEl.addEventListener('click', function() {
-        myChoice = questions[round].choices[0];
-    })
-    secondAnswerEl.addEventListener('click', function() {
-        myChoice = questions[round].choices[1];
-    })
-    thirdAnswerEl.addEventListener('click', function() {
-        myChoice = questions[round].choices[2];
-    })
-    fourthAnswerEl.addEventListener('click', function() {
-        myChoice = questions[round].choices[3];
-    })
-    if (myChoice === questions[round].answer) {
-        function thatsRight () {
-            scoreCount++;
-            round++;
-            console.log('right')
-            displayQuestion();
-        }
+    var selectedAnswer = this.textContent;
+    console.log(selectedAnswer);
+    var correctAnswer = questions[round].answer
+    if (selectedAnswer !== correctAnswer) {
+        timerCount-=5;
+    }
+    round++;
+    if (round < questions.length) {
+      displayQuestion(); 
     } else {
-        function thatsWrong() {
-        timerCount = timerCount - 5;
-        round++;
-        console.log('wrong')
-        displayQuestion();
+        gameOver();
     }
     }
-}
+
 
 //Start the timer
 function startTimer() {

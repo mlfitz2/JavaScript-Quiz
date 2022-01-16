@@ -60,8 +60,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: left;
-    width: 40%;
+    align-items: center;
     font-size: 2em;
 }
 
@@ -81,6 +80,10 @@ main {
 
 .answer, .high-score {
     margin: 5px;
+}
+
+.hide {
+    display: none;
 }
 
 @media screen and (max-width: 768px) {
