@@ -76,6 +76,9 @@ main {
     border-radius: 30px;
     padding: 10px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
 }
 
 .answer, .high-score {
@@ -84,6 +87,10 @@ main {
 
 .hide {
     display: none;
+}
+
+.wrong {
+    background-color: red !important; 
 }
 
 @media screen and (max-width: 768px) {

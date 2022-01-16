@@ -14,7 +14,7 @@
 <body>
 
     <header>
-        <h2 id="scoreboard">Your Score: <span id="score-count"></span></h1>  
+        <h1>JavaScript Quiz!</h1> 
         <h2 id="timer">Time Left: <span id="time-left">60</span> seconds</h2>              
     </header>
 
@@ -23,7 +23,8 @@
         </section>
 
     <section class="announcement-area">
-        <h2 class="announcement">Press the Start button to begin the Javascript quiz!</h2>
+        <h2 class="announcement">Press the Start button to begin the Javascript quiz!</h2> <br>
+        <p class="announcement">The quiz will move to the next question when you select the correct answer. Your final score will be the number of seconds remaining on the timer when you have answered all questions correctly.</p>
     </section>
 
     <main>
@@ -36,16 +37,18 @@
             <button class="answer" id="fourth-answer"></button> -->
        
         </section>
+
+        <div id="end-screen" class="hide">
+            <h2>Game Over!</h2>
+            <p>Your final score is <span id="final-score"></span>.</p>
+            <p>
+              Enter initials: <input type="text" id="initials" max="3" />
+              <button id="submit">Submit</button>
+            </p>
+          </div>
+
     </main>
 
-    <div id="end-screen" class="hide">
-        <h2>All done!</h2>
-        <p>Your final score is <span id="final-score"></span>.</p>
-        <p>
-          Enter initials: <input type="text" id="initials" max="3" />
-          <button id="submit">Submit</button>
-        </p>
-      </div>
 
 
 </body>

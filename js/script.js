@@ -7,13 +7,16 @@ var firstAnswerEl = document.querySelector('#first-answer');
 var secondAnswerEl = document.querySelector('#second-answer');
 var thirdAnswerEl = document.querySelector('#third-answer');
 var fourthAnswerEl = document.querySelector('#fourth-answer');
-var scoreCountEl = document.querySelector('#score-count')
 var answerEl = document.querySelector('.answer');
 var buttonZone = document.querySelector('#button-zone');
+var endScreenEl = document.querySelector('#end-screen');
+var finalScoreEl = document.querySelector('#final-score');
+var initialsInput = document.querySelector('#initials');
 
 var timerCount = 60;
 var round = 0;
-var scoreCount = 0;
+
+
 
 
 //Start without any questions on the screen
@@ -22,7 +25,6 @@ quizAreaEl.remove();
 //Start the game
 function startGame() {
     startTimer();
-    scoreCountEl.textContent = scoreCount;
     announcementAreaEl.remove();
     document.body.appendChild(quizAreaEl);
     displayQuestion();    
@@ -40,23 +42,23 @@ function displayQuestion() {
         tempButton.onclick = makeYourChoice;
         buttonZone.append(tempButton);
     })
-    // firstAnswerEl.textContent = questions[round].choices[0];
-    // secondAnswerEl.textContent = questions[round].choices[1];
-    // thirdAnswerEl.textContent = questions[round].choices[2];
-    // fourthAnswerEl.textContent = questions[round].choices[3];
 }    
 
+//Choose answer
 function makeYourChoice() {
     var selectedAnswer = this.textContent;
-    console.log(selectedAnswer);
-    var correctAnswer = questions[round].answer
+    var correctAnswer = questions[round].answer;
     if (selectedAnswer !== correctAnswer) {
         timerCount-=5;
+        this.classList.add('wrong');
+        this.style('color', 'red');
+    } else if (selectedAnswer === correctAnswer) {
+        round++;
     }
-    round++;
     if (round < questions.length) {
-      displayQuestion(); 
+        displayQuestion(); 
     } else {
+        clearInterval(timer);
         gameOver();
     }
     }
@@ -77,23 +79,36 @@ function startTimer() {
 //Game over
 function gameOver() {
     quizAreaEl.remove();
-    var initials = window.prompt('Please enter your initials to save your score to the scoreboard.');
-    localStorage.setItem('userInitials', initials);
-    localStorage.setItem('userScore', timerCount);
-    announcementAreaEl.textContent = 'Game Over! Your score is ' + timerCount;     
-    document.body.appendChild(announcementAreaEl); 
-
-    updateScoreboard();
-      
+    endScreenEl.removeAttribute('class');
+    var userScore = timerCount;
+    finalScoreEl.textContent = userScore;
+    saveMyScore();      
 }
 
-function updateScoreboard() {
-    var storedInitials = localStorage.getItem('userInitials');
-    var storedScore = localStorage.getItem('userScore');
-    var newEntry = document.createElement('h2');
-    newEntry.textContent = storedInitials + ': ' + storedScore;
-    document.body.appendChild(newEntry);
+//Update the scoreboard
+function saveMyScore() {
+    var submitButton = document.querySelector('#submit');
+    submitButton.addEventListener('click', function() {
+        userScore = timerCount;
+        var userInfo = {
+            initials: initialsInput.value,
+            score: userScore.value
+        };
+        localStorage.setItem('userInfo', JSON.stringify(userInfo));
+        console.log(userInfo);
+    })
 }
+
+
+
+//Update the scoreboard
+// function updateScoreboard() {
+//     var storedInitials = localStorage.getItem('userInitials');
+//     var storedScore = localStorage.getItem('userScore');
+//     var newEntry = document.createElement('h2');
+//     newEntry.textContent = storedInitials + ': ' + storedScore;
+//     document.body.appendChild(newEntry);
+// }
 
 //Click the button to start the game
 startButton.addEventListener('click', startGame);
