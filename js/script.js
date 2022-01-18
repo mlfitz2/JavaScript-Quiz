@@ -15,7 +15,7 @@ var initialsInput = document.querySelector('#initials');
 
 var timerCount = 60;
 var round = 0;
-
+var userScore = '';
 
 
 
@@ -51,6 +51,8 @@ function makeYourChoice() {
     if (selectedAnswer !== correctAnswer) {
         timerCount-=5;
         this.classList.add('wrong');
+        console.log(this.classList)
+        //this.style.backgroundColor = 'red';
         this.style('color', 'red');
     } else if (selectedAnswer === correctAnswer) {
         round++;
@@ -80,7 +82,7 @@ function startTimer() {
 function gameOver() {
     quizAreaEl.remove();
     endScreenEl.removeAttribute('class');
-    var userScore = timerCount;
+    userScore = timerCount;
     finalScoreEl.textContent = userScore;
     saveMyScore();      
 }
@@ -88,17 +90,38 @@ function gameOver() {
 //Update the scoreboard
 function saveMyScore() {
     var submitButton = document.querySelector('#submit');
+
     submitButton.addEventListener('click', function() {
-        userScore = timerCount;
+
         var userInfo = {
             initials: initialsInput.value,
-            score: userScore.value
+            score: userScore
         };
-        localStorage.setItem('userInfo', JSON.stringify(userInfo));
-        console.log(userInfo);
+        var oldScores = JSON.parse(localStorage.getItem("userInfo"));
+        if (oldScores == null) {
+            oldScores = [];
+        }
+        oldScores.push(userInfo);
+        localStorage.setItem('userInfo', JSON.stringify(oldScores));
+        updateScoreboard();
     })
 }
 
+function updateScoreboard() {
+
+    var storedScores = JSON.parse(localStorage.getItem('userInfo'));
+
+    storedScores.forEach(element => {
+        var newScore = document.createElement('p');
+        newScore.textContent = element.initials + ': ' + element.score;
+        endScreenEl.append(newScore);
+        console.log(storedScores);}
+    );
+
+
+
+
+}
 
 
 //Update the scoreboard
