@@ -10,7 +10,7 @@ The HTML begins with the elements of the opening instructions under the start bu
 
 
 
-![Screenshot-1](./screenshots/startscreen.jpg)
-![Screenshot-1](./screenshots/question.jpg)
-![Screenshot-1](./screenshots/wronganswer.jpg)
-![Screenshot-1](./screenshots/gameover.jpg)
+![Screenshot-1](./screenshots/startscreen.JPG "Start Screen")
+![Screenshot-1](./screenshots/question.JPG "Question")
+![Screenshot-1](./screenshots/wronganswer.JPG "Button changes after wrong answer")
+![Screenshot-1](./screenshots/gameover.JPG "Game Over")
