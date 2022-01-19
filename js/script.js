@@ -17,8 +17,6 @@ var timerCount = 60;
 var round = 0;
 var userScore = '';
 
-
-
 //Start without any questions on the screen
 quizAreaEl.remove();
 
@@ -52,7 +50,6 @@ function makeYourChoice() {
         timerCount-=5;
         this.classList.add('wrong');
         console.log(this.classList)
-        //this.style.backgroundColor = 'red';
         this.style('color', 'red');
     } else if (selectedAnswer === correctAnswer) {
         round++;
@@ -64,7 +61,6 @@ function makeYourChoice() {
         gameOver();
     }
     }
-
 
 //Start the timer
 function startTimer() {
@@ -87,7 +83,7 @@ function gameOver() {
     saveMyScore();      
 }
 
-//Update the scoreboard
+//Save the score (number of seconds left on timer after all questions are answered correctly)
 function saveMyScore() {
     var submitButton = document.querySelector('#submit');
 
@@ -107,8 +103,8 @@ function saveMyScore() {
     })
 }
 
+//Display scoreboard with initials and scores of past games
 function updateScoreboard() {
-
     var storedScores = JSON.parse(localStorage.getItem('userInfo'));
 
     storedScores.forEach(element => {
@@ -117,21 +113,7 @@ function updateScoreboard() {
         endScreenEl.append(newScore);
         console.log(storedScores);}
     );
-
-
-
-
 }
-
-
-//Update the scoreboard
-// function updateScoreboard() {
-//     var storedInitials = localStorage.getItem('userInitials');
-//     var storedScore = localStorage.getItem('userScore');
-//     var newEntry = document.createElement('h2');
-//     newEntry.textContent = storedInitials + ': ' + storedScore;
-//     document.body.appendChild(newEntry);
-// }
 
 //Click the button to start the game
 startButton.addEventListener('click', startGame);
