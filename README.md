@@ -1,5 +1,8 @@
 # JavaScript-Quiz
 
+Deployed Application: https://mlfitz2.github.io/JavaScript-Quiz/
+GitHub Repository: https://github.com/mlfitz2/JavaScript-Quiz 
+
 This project is a dynamically-updating quiz on JavaScript questions. 
 
 Upon loading, the user is shown a welcome screen with a Start button and instructions. After clicking Start, a 60-second timer begins counting down. The text on the welcome screen is removed using JavaScript, and replaced with the first question and four answer choices. If the user clicks on an incorrect answer, it will turn red and the user will be penalized by 5 seconds being removed from the timer. 
